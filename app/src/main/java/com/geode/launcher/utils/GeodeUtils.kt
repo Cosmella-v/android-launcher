@@ -766,8 +766,9 @@ object GeodeUtils {
         return true
     }
     // AudioManager
-     internal fun AudioManager(): AudioManager? = activity.get()?.run {
-        val manager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+     internal fun getAudioManager(): AudioManager? {
+        val act = activity.get() ?: return null
+        return act.getSystemService(Context.AUDIO_SERVICE) as? AudioManager
     }
     /**
      * getMode
