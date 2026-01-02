@@ -761,6 +761,67 @@ object GeodeUtils {
 
         return true
     }
+    // AudioManager
+     internal fun AudioManager(): AudioManager? = activity.get()?.run {
+        val manager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    }
+    /**
+     * getMode
+     * Returns the current audio mode.
+     */
+    @JvmStatic
+    fun audioManager_getMode(): Int {
+        val audioManager = AudioManager() ?: return -1
+        return audioManager.getMode()
+    }
+    /**
+     * dispatchMediaKeyEvent
+     * Sends a simulated key event for a media button.
+     * @param Action The action of the key event (e.g. KeyEvent.ACTION_DOWN).
+     * @param code The key code of the key event (e.g., KeyEvent.KEYCODE_MEDIA_PLAY).
+     */
+    @JvmStatic
+    fun audioManager_dispatchMediaKeyEvent(action: Int, code: Int) {
+        val audioManager = AudioManager() ?: return
+        audioManager.dispatchMediaKeyEvent(KeyEvent(action, code) as KeyEvent)
+    }
+    /**
+     * dispatchMediaKeyEvent
+     * Sends a simulated key event for a media button.
+     * @param Action The KeyEvent to dispatch.
+     */
+    @JvmStatic
+    fun audioManager_dispatchMediaKeyEventWKeyevent(action: KeyEvent) {
+        val audioManager = AudioManager() ?: return
+        audioManager.dispatchMediaKeyEvent(action)
+    }
+    /**
+     * isMusicActive
+     * returns if music is active or not
+     */
+    @JvmStatic
+    fun audioManager_isMusicActive() : Boolean {
+        val audioManager = AudioManager() ?: return false
+        return audioManager.isMusicActive()
+    }
+    /**
+    * getStreamMaxVolume
+    * returns highest Volume of a audio stream
+    */
+    @JvmStatic
+    fun audioManager_getStreamMinVolume(Int streamType) : Int {
+        val audioManager = AudioManager() ?: return 0
+        return audioManager.getStreamMaxVolume(streamType)
+    }
+    /**
+    * getStreamMinVolume
+    * returns lowest Volume of a audio stream
+    */
+    @JvmStatic
+    fun audioManager_getStreamMinVolume(Int streamType) : Int {
+        val audioManager = AudioManager() ?: return 0
+        return audioManager.getStreamMinVolume(streamType)
+    }
 
     external fun nativeKeyUp(keyCode: Int, modifiers: Int)
     external fun nativeKeyDown(keyCode: Int, modifiers: Int, isRepeating: Boolean)
