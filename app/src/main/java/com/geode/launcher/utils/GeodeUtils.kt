@@ -39,6 +39,10 @@ import java.io.File
 import java.lang.ref.WeakReference
 import kotlin.system.exitProcess
 
+import android.media.AudioManager
+import android.media.AudioFocusRequest
+import android.view.KeyEvent
+
 @Keep
 @Suppress("unused", "KotlinJniMissingFunction")
 object GeodeUtils {
